@@ -1,0 +1,893 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const tripDurations = [
+  {
+    days: "3-4 Days",
+    title: "Weekend Getaway",
+    icon: "🏖️",
+    description: "Perfect for a quick escape. Focus on one destination with nearby attractions.",
+    suggested: ["Visakhapatnam & Araku Valley", "Tirupati & Chandragiri", "Vijayawada & Amaravati"],
+    activities: "Beach relaxation, Temple visits, City exploration"
+  },
+  {
+    days: "5-7 Days",
+    title: "Cultural Explorer",
+    icon: "🛕",
+    description: "Ideal for experiencing diverse culture and heritage across multiple cities.",
+    suggested: ["Tirupati → Vijayawada → Amaravati", "Vizag → Araku → Srisailam", "Lepakshi → Gandikota → Horsley Hills"],
+    activities: "Temple circuits, Heritage sites, Hill stations"
+  },
+  {
+    days: "8-10 Days",
+    title: "Complete Experience",
+    icon: "🌟",
+    description: "Comprehensive tour covering spiritual, coastal, and cultural highlights.",
+    suggested: ["Grand AP Tour: Vizag → Araku → Vijayawada → Tirupati → Srisailam", "Coastal & Heritage Route", "Adventure & Nature Trail"],
+    activities: "All major attractions, Multiple destinations, Leisure pace"
+  },
+  {
+    days: "12+ Days",
+    title: "Ultimate Journey",
+    icon: "🗺️",
+    description: "Deep dive into every aspect - temples, beaches, hills, heritage, and culture.",
+    suggested: ["Complete State Tour", "Offbeat Exploration", "Customized Thematic Tours"],
+    activities: "Comprehensive exploration, Village stays, Adventure activities"
+  }
+];
+
+const travelSeasons = [
+  {
+    season: "Winter (Oct - Feb)",
+    badge: "Best Time",
+    temp: "15°C - 30°C",
+    highlights: "Pleasant weather, ideal for sightseeing and outdoor activities",
+    best: ["Beach destinations", "Hill stations", "Temple visits", "Wildlife safaris"],
+    festivals: ["Diwali", "Sankranti", "Christmas"]
+  },
+  {
+    season: "Summer (Mar - Jun)",
+    badge: "Hot & Humid",
+    temp: "25°C - 42°C",
+    highlights: "Hill stations are pleasant, coastal areas get humid",
+    best: ["Hill stations (Araku, Horsley Hills)", "Indoor attractions", "Early morning/evening visits"],
+    festivals: ["Ugadi", "Sri Rama Navami"]
+  },
+  {
+    season: "Monsoon (Jul - Sep)",
+    badge: "Scenic",
+    temp: "22°C - 35°C",
+    highlights: "Lush greenery, waterfalls at peak, moderate crowds",
+    best: ["Araku Valley", "Waterfalls", "Photography", "Ayurvedic wellness"],
+    festivals: ["Bonalu", "Krishna Janmashtami"]
+  }
+];
+
+const budgetOptions = [
+  {
+    type: "Budget Travel",
+    icon: "💰",
+    perDay: "₹1,500 - ₹2,500",
+    accommodation: "Budget hotels, Hostels, Dharamshalas",
+    food: "Local eateries, Street food",
+    transport: "Public buses, Shared autos",
+    tips: "Book government guest houses, Use APSRTC buses, Eat at local restaurants"
+  },
+  {
+    type: "Mid-Range",
+    icon: "🏨",
+    perDay: "₹3,000 - ₹5,000",
+    accommodation: "3-star hotels, AP Tourism properties",
+    food: "Decent restaurants, Hotel dining",
+    transport: "Private cabs, AC buses",
+    tips: "Book AP Tourism packages, Mix of local & chain hotels, Pre-book cabs"
+  },
+  {
+    type: "Luxury",
+    icon: "✨",
+    perDay: "₹6,000 - ₹15,000+",
+    accommodation: "5-star hotels, Premium resorts",
+    food: "Fine dining, Specialty restaurants",
+    transport: "Private vehicles, Flights",
+    tips: "Luxury resorts in Vizag, Heritage hotels, Helicopter services available"
+  }
+];
+
+const essentialTips = [
+  {
+    category: "Before You Go",
+    icon: "📋",
+    tips: [
+      "Book Tirupati darshan tickets online in advance",
+      "Check temple timings and dress codes",
+      "Carry valid ID proofs for hotel check-ins",
+      "Download offline maps and translation apps",
+      "Get travel insurance for adventure activities"
+    ]
+  },
+  {
+    category: "What to Pack",
+    icon: "🎒",
+    tips: [
+      "Light cotton clothes (summer), Light woolens (winter)",
+      "Comfortable walking shoes",
+      "Sunscreen, hat, and sunglasses",
+      "Modest clothing for temple visits",
+      "Rain gear during monsoon"
+    ]
+  },
+  {
+    category: "Health & Safety",
+    icon: "🏥",
+    tips: [
+      "Carry basic medicines and first-aid kit",
+      "Drink bottled water",
+      "Be cautious with street food initially",
+      "Keep emergency numbers handy",
+      "Travel insurance recommended"
+    ]
+  },
+  {
+    category: "Local Etiquette",
+    icon: "🙏",
+    tips: [
+      "Remove shoes before entering temples",
+      "Dress modestly at religious sites",
+      "Ask permission before photographing people",
+      "Respect local customs and traditions",
+      "Learn basic Telugu phrases"
+    ]
+  }
+];
+
+const transportOptions = [
+  {
+    mode: "By Air",
+    icon: "✈️",
+    details: "Major airports in Visakhapatnam, Vijayawada, and Tirupati",
+    connectivity: "Well connected to major Indian cities",
+    tips: "Book in advance for better rates. Airport taxis available."
+  },
+  {
+    mode: "By Train",
+    icon: "🚂",
+    details: "Extensive railway network across the state",
+    connectivity: "Major junctions: Vijayawada, Visakhapatnam, Tirupati",
+    tips: "Tatkal bookings open 1 day before. AC coaches recommended."
+  },
+  {
+    mode: "By Road",
+    icon: "🚌",
+    details: "APSRTC operates extensive bus services",
+    connectivity: "Good road network connecting all major destinations",
+    tips: "Volvo buses available for long routes. Book online via APSRTC."
+  },
+  {
+    mode: "By Car",
+    icon: "🚗",
+    details: "Well-maintained highways and scenic routes",
+    connectivity: "Self-drive or hire with driver options available",
+    tips: "GPS recommended. Fuel stations widely available on highways."
+  }
+];
+---
+
+<Layout title="Plan Your Trip - Andhra Pradesh Tourism">
+  <div class="plan-hero">
+    <div class="plan-hero-overlay">
+      <div class="container">
+        <h1 class="plan-hero-title">Plan Your Perfect Trip</h1>
+        <p class="plan-hero-subtitle">Let us help you create unforgettable memories in Andhra Pradesh</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="trip-duration">
+    <div class="container">
+      <div class="section-header">
+        <h2>How Long Will You Stay?</h2>
+        <p>Choose your ideal trip duration based on available time</p>
+      </div>
+      <div class="duration-grid">
+        {tripDurations.map((duration) => (
+          <div class="duration-card">
+            <div class="duration-icon">{duration.icon}</div>
+            <div class="duration-days">{duration.days}</div>
+            <h3>{duration.title}</h3>
+            <p class="duration-desc">{duration.description}</p>
+            <div class="suggested-routes">
+              <h4>Suggested Routes:</h4>
+              <ul>
+                {duration.suggested.map((route) => (
+                  <li>{route}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="activities-tag">
+              <span class="tag-icon">🎯</span>
+              <span>{duration.activities}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="best-time">
+    <div class="container">
+      <div class="section-header">
+        <h2>When to Visit?</h2>
+        <p>Plan according to weather and festivals</p>
+      </div>
+      <div class="seasons-grid">
+        {travelSeasons.map((season) => (
+          <div class="season-card">
+            <div class="season-header">
+              <h3>{season.season}</h3>
+              <span class="season-badge">{season.badge}</span>
+            </div>
+            <div class="temperature">🌡️ {season.temp}</div>
+            <p class="season-highlights">{season.highlights}</p>
+            <div class="best-for">
+              <h4>Best For:</h4>
+              <ul>
+                {season.best.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="festivals">
+              <h4>Major Festivals:</h4>
+              <div class="festival-tags">
+                {season.festivals.map((festival) => (
+                  <span class="festival-tag">{festival}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="budget-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Budget Planning</h2>
+        <p>Estimate your daily expenses per person</p>
+      </div>
+      <div class="budget-grid">
+        {budgetOptions.map((budget) => (
+          <div class="budget-card">
+            <div class="budget-icon">{budget.icon}</div>
+            <h3>{budget.type}</h3>
+            <div class="price-tag">{budget.perDay}/day</div>
+            <div class="budget-breakdown">
+              <div class="breakdown-item">
+                <strong>Stay:</strong> {budget.accommodation}
+              </div>
+              <div class="breakdown-item">
+                <strong>Food:</strong> {budget.food}
+              </div>
+              <div class="breakdown-item">
+                <strong>Transport:</strong> {budget.transport}
+              </div>
+            </div>
+            <div class="budget-tips">
+              <h4>💡 Money-Saving Tips:</h4>
+              <p>{budget.tips}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="transport-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Getting Around</h2>
+        <p>Choose your preferred mode of transport</p>
+      </div>
+      <div class="transport-grid">
+        {transportOptions.map((transport) => (
+          <div class="transport-card">
+            <div class="transport-icon">{transport.icon}</div>
+            <h3>{transport.mode}</h3>
+            <p class="transport-details">{transport.details}</p>
+            <div class="connectivity">
+              <strong>Connectivity:</strong> {transport.connectivity}
+            </div>
+            <div class="transport-tips">
+              <span class="tip-icon">💡</span>
+              <span>{transport.tips}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="essential-tips">
+    <div class="container">
+      <div class="section-header">
+        <h2>Essential Travel Tips</h2>
+        <p>Make your trip smooth and hassle-free</p>
+      </div>
+      <div class="tips-grid">
+        {essentialTips.map((tipSection) => (
+          <div class="tip-section-card">
+            <div class="tip-header">
+              <span class="tip-category-icon">{tipSection.icon}</span>
+              <h3>{tipSection.category}</h3>
+            </div>
+            <ul class="tip-list">
+              {tipSection.tips.map((tip) => (
+                <li>{tip}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Need Personalized Assistance?</h2>
+        <p>Our travel experts are here to help you plan the perfect itinerary</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn-primary">Contact Us</a>
+          <a href="tel:+911234567890" class="btn btn-secondary-cta">
+            📞 Call Now
+          </a>
+        </div>
+        <div class="contact-info">
+          <p>📧 tourism@andhrapradesh.gov.in | 📞 1800-XXX-XXXX (Toll Free)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .plan-hero {
+    position: relative;
+    height: 55vh;
+    min-height: 450px;
+    background: linear-gradient(135deg, #1E4D2B 0%, #5F8161 100%);
+    overflow: hidden;
+  }
+
+  .plan-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23F0DE8C' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    animation: bgMove 40s linear infinite;
+  }
+
+  .plan-hero-overlay {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .plan-hero-title {
+    font-size: 4rem;
+    color: #F0DE8C;
+    margin-bottom: 1.2rem;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease;
+  }
+
+  .plan-hero-subtitle {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.95);
+    max-width: 700px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease;
+  }
+
+  .trip-duration,
+  .best-time,
+  .budget-section,
+  .transport-section,
+  .essential-tips {
+    padding: 70px 0;
+  }
+
+  .trip-duration {
+    background: white;
+  }
+
+  .best-time {
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.08) 0%, rgba(184, 199, 127, 0.08) 100%);
+  }
+
+  .budget-section {
+    background: linear-gradient(to bottom, #ffffff 0%, #f9faf5 100%);
+  }
+
+  .transport-section {
+    background: linear-gradient(135deg, rgba(95, 129, 97, 0.05) 0%, rgba(30, 77, 43, 0.05) 100%);
+  }
+
+  .essential-tips {
+    background: white;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .section-header h2 {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+
+  .duration-grid,
+  .seasons-grid,
+  .budget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  .duration-card,
+  .season-card,
+  .budget-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .duration-card::before,
+  .season-card::before,
+  .budget-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-warm);
+  }
+
+  .duration-card:hover,
+  .season-card:hover,
+  .budget-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(30, 77, 43, 0.15);
+  }
+
+  .duration-icon,
+  .budget-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+  }
+
+  .duration-days {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1E4D2B;
+    margin-bottom: 8px;
+  }
+
+  .duration-card h3,
+  .season-card h3,
+  .budget-card h3 {
+    font-size: 1.6rem;
+    color: #1E4D2B;
+    margin-bottom: 12px;
+  }
+
+  .duration-desc,
+  .season-highlights {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+  }
+
+  .suggested-routes,
+  .best-for {
+    margin: 18px 0;
+  }
+
+  .suggested-routes h4,
+  .best-for h4 {
+    font-size: 1rem;
+    color: #1E4D2B;
+    margin-bottom: 10px;
+  }
+
+  .suggested-routes ul,
+  .best-for ul,
+  .tip-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .suggested-routes li,
+  .best-for li,
+  .tip-list li {
+    padding: 6px 0 6px 22px;
+    position: relative;
+    color: #5F8161;
+    line-height: 1.5;
+    font-size: 0.9rem;
+  }
+
+  .suggested-routes li::before,
+  .best-for li::before,
+  .tip-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #B8C77F;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .activities-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding: 10px;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.1) 0%, rgba(184, 199, 127, 0.1) 100%);
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: #1E4D2B;
+    font-weight: 500;
+  }
+
+  .tag-icon {
+    font-size: 1.2rem;
+  }
+
+  .season-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .season-badge {
+    padding: 5px 12px;
+    background: var(--gradient-secondary);
+    color: #1E4D2B;
+    border-radius: 18px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .temperature {
+    font-size: 1.2rem;
+    color: #5F8161;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .festivals {
+    margin-top: 15px;
+  }
+
+  .festivals h4 {
+    font-size: 1rem;
+    color: #1E4D2B;
+    margin-bottom: 10px;
+  }
+
+  .festival-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .festival-tag {
+    padding: 6px 12px;
+    background: linear-gradient(135deg, rgba(30, 77, 43, 0.1) 0%, rgba(95, 129, 97, 0.1) 100%);
+    border-radius: 18px;
+    font-size: 0.8rem;
+    color: #1E4D2B;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .price-tag {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1E4D2B;
+    margin: 15px 0;
+    background: var(--gradient-warm);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .budget-breakdown {
+    margin: 20px 0;
+  }
+
+  .breakdown-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #666;
+    line-height: 1.5;
+    font-size: 0.9rem;
+  }
+
+  .breakdown-item strong {
+    color: #1E4D2B;
+  }
+
+  .budget-tips {
+    margin-top: auto;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.08) 0%, rgba(184, 199, 127, 0.08) 100%);
+    border-radius: 12px;
+    border-left: 4px solid #B8C77F;
+  }
+
+  .budget-tips h4 {
+    font-size: 0.95rem;
+    color: #1E4D2B;
+    margin-bottom: 8px;
+  }
+
+  .budget-tips p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.9rem;
+  }
+
+  .transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  .transport-card {
+    background: white;
+    border-radius: 18px;
+    padding: 28px 22px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .transport-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(30, 77, 43, 0.15);
+  }
+
+  .transport-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+  }
+
+  .transport-card h3 {
+    font-size: 1.5rem;
+    color: #1E4D2B;
+    margin-bottom: 12px;
+  }
+
+  .transport-details {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+
+  .connectivity {
+    padding: 12px;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.1) 0%, rgba(184, 199, 127, 0.1) 100%);
+    border-radius: 10px;
+    margin: 12px 0;
+    font-size: 0.9rem;
+    color: #5F8161;
+  }
+
+  .transport-tips {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: auto;
+    text-align: left;
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .tip-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  .tip-section-card {
+    background: white;
+    border-radius: 18px;
+    padding: 28px 24px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .tip-section-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(30, 77, 43, 0.12);
+  }
+
+  .tip-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .tip-category-icon {
+    font-size: 2.5rem;
+  }
+
+  .tip-header h3 {
+    font-size: 1.5rem;
+    color: #1E4D2B;
+  }
+
+  .contact-cta {
+    padding: 80px 0;
+    background: var(--gradient-primary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-cta::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -15%;
+    width: 50%;
+    height: 180%;
+    background: radial-gradient(circle, rgba(240, 222, 140, 0.12) 0%, transparent 70%);
+    animation: rotate 35s linear infinite;
+  }
+
+  .cta-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 50px 35px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .cta-box h2 {
+    font-size: 3rem;
+    color: #F0DE8C;
+    margin-bottom: 15px;
+  }
+
+  .cta-box > p {
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 35px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+
+  .cta-buttons .btn-primary {
+    background: var(--gradient-secondary);
+    color: #1E4D2B;
+  }
+
+  .cta-buttons .btn-primary:hover {
+    background: linear-gradient(135deg, #F0DE8C 0%, #B8C77F 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary-cta {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+
+  .btn-secondary-cta:hover {
+    background: white;
+    color: #1E4D2B;
+  }
+
+  .contact-info {
+    margin-top: 25px;
+  }
+
+  .contact-info p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .plan-hero-title {
+      font-size: 2.5rem;
+    }
+
+    .plan-hero-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+    }
+
+    .cta-box h2 {
+      font-size: 2.2rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .duration-grid,
+    .seasons-grid,
+    .budget-grid,
+    .transport-grid,
+    .tips-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

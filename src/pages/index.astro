@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Footer from '../components/Footer.astro';
+import DestinationCard from '../components/DestinationCard.astro';
+
+const featuredDestinations = [
+  {
+    title: "Tirupati",
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&h=600&fit=crop",
+    description: "Home to the sacred Tirumala Venkateswara Temple, one of the richest and most visited pilgrimage sites in the world.",
+    link: "/destinations"
+  },
+  {
+    title: "Visakhapatnam",
+    image: "https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800&h=600&fit=crop",
+    description: "The jewel of the East Coast with pristine beaches, lush green hills, and vibrant culture.",
+    link: "/destinations"
+  },
+  {
+    title: "Araku Valley",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+    description: "A picturesque hill station known for its coffee plantations, waterfalls, and tribal culture.",
+    link: "/destinations"
+  },
+  {
+    title: "Amaravati",
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop",
+    description: "Ancient Buddhist site with magnificent stupas and rich historical significance.",
+    link: "/destinations"
+  }
+];
+
+const experiences = [
+  {
+    title: "Temple Tours",
+    description: "Visit ancient temples and experience divine spirituality at sacred pilgrimage sites.",
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&h=600&fit=crop",
+    icon: "🛕"
+  },
+  {
+    title: "Beach Paradise",
+    description: "Relax on pristine beaches along the 974km coastline with golden sands.",
+    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop",
+    icon: "🏖️"
+  },
+  {
+    title: "Wildlife Safari",
+    description: "Explore diverse flora and fauna in national parks and wildlife sanctuaries.",
+    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&h=600&fit=crop",
+    icon: "🦁"
+  },
+  {
+    title: "Cultural Heritage",
+    description: "Experience traditional dance, music, art, and vibrant local festivals.",
+    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=600&fit=crop",
+    icon: "🎭"
+  }
+];
+---
+
+<Layout title="Andhra Pradesh Tourism - Explore the Land of Heritage">
+  <Hero />
+
+  <!-- Featured Destinations -->
+  <section class="section-destinations">
+    <div class="container">
+      <div class="section-header">
+        <h2>Must-Visit Destinations</h2>
+        <p>Explore the diverse landscapes and rich heritage of Andhra Pradesh</p>
+      </div>
+      <div class="grid-4">
+        {featuredDestinations.map(dest => (
+          <DestinationCard 
+            title={dest.title}
+            image={dest.image}
+            description={dest.description}
+            link={dest.link}
+          />
+        ))}
+      </div>
+      <div class="section-footer">
+        <a href="/destinations" class="btn btn-outline">View All Destinations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiences -->
+  <section class="section-experiences glass-effect">
+    <div class="container">
+      <div class="section-header">
+        <h2>Unique Experiences</h2>
+        <p>Create unforgettable memories in Andhra Pradesh</p>
+      </div>
+      <div class="grid-4">
+        {experiences.map(exp => (
+          <DestinationCard 
+            title={exp.title}
+            image={exp.image}
+            description={exp.description}
+            link={exp.link}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Facts -->
+  <section class="section-facts">
+    <div class="container">
+      <div class="section-header">
+        <h2>Andhra Pradesh at a Glance</h2>
+      </div>
+      <div class="grid-3">
+        <div class="fact-card">
+          <div class="fact-icon">🏛️</div>
+          <h3>Rich Heritage</h3>
+          <p>Over 2000 years of cultural history</p>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">🏖️</div>
+          <h3>974 km Coastline</h3>
+          <p>Second longest coastline in India</p>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">🍛</div>
+          <h3>Spicy Cuisine</h3>
+          <p>Famous for flavorful Andhra dishes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plan Your Trip -->
+  <section class="section-plan">
+    <div class="container">
+      <div class="plan-content">
+        <h2>Ready to Explore?</h2>
+        <p>Plan your perfect trip to Andhra Pradesh with our comprehensive travel guide</p>
+        <div class="plan-buttons">
+          <a href="/plan-trip" class="btn btn-primary">Plan Your Trip</a>
+          <a href="/contact" class="btn btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

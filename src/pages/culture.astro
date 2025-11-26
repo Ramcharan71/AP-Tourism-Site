@@ -1,0 +1,866 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const culturalAspects = [
+  {
+    title: "Classical Dance Forms",
+    category: "Performing Arts",
+    icon: "💃",
+    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=600&fit=crop",
+    description: "Andhra Pradesh is the birthplace of Kuchipudi, one of India's eight classical dance forms. This graceful dance-drama combines pure dance, mime, and histrionics with a unique blend of grace and vigor.",
+    highlights: [
+      "Kuchipudi - Classical dance-drama from Krishna district",
+      "Vilasini Natyam - Temple dance tradition of Devadasis",
+      "Perini Shivatandavam - Vigorous warrior dance",
+      "Butta Bommalu - Shadow puppet theatre",
+      "Burrakatha - Folk narrative performance"
+    ],
+    experience: "Attend live performances at Kalakshetra in major cities",
+    significance: "UNESCO recognized cultural heritage"
+  },
+  {
+    title: "Traditional Crafts",
+    category: "Handicrafts",
+    icon: "🎨",
+    image: "https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=800&h=600&fit=crop",
+    description: "The state's artisans have preserved age-old craft traditions passed down through generations. From intricate Kalamkari paintings to vibrant Kondapalli toys, each craft tells a unique story.",
+    highlights: [
+      "Kalamkari - Hand-painted or block-printed cotton textiles",
+      "Kondapalli Toys - Colorful wooden toys and dolls",
+      "Etikoppaka Toys - Lacquered wooden toys with natural dyes",
+      "Machilipatnam Kalamkari - Traditional textile art",
+      "Budithi Brassware - Traditional metalwork"
+    ],
+    experience: "Visit craft villages and participate in workshops",
+    significance: "Geographical Indication (GI) tagged crafts"
+  },
+  {
+    title: "Festivals & Celebrations",
+    category: "Traditions",
+    icon: "🎉",
+    image: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&h=600&fit=crop",
+    description: "Vibrant festivals celebrate the state's agricultural heritage, religious devotion, and cultural diversity. Each festival is marked by colorful rituals, traditional music, and community feasting.",
+    highlights: [
+      "Brahmotsavam - Grand temple festival at Tirumala",
+      "Sankranti - Harvest festival with kite flying",
+      "Ugadi - Telugu New Year celebrations",
+      "Deccan Festival - Cultural extravaganza in Hyderabad",
+      "Lumbini Festival - Buddhist cultural celebration"
+    ],
+    experience: "Participate in community celebrations and rituals",
+    significance: "Showcases religious and agricultural traditions"
+  },
+  {
+    title: "Culinary Heritage",
+    category: "Food Culture",
+    icon: "🍛",
+    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&h=600&fit=crop",
+    description: "Andhra cuisine is renowned for its fiery flavors and extensive use of spices, tamarind, and red chilies. The culinary tradition reflects the state's agricultural abundance and coastal influences.",
+    highlights: [
+      "Hyderabadi Biryani - Aromatic rice delicacy",
+      "Gongura Pachadi - Tangy sorrel leaf curry",
+      "Pulihora - Tamarind rice temple offering",
+      "Pesarattu - Green gram dosa breakfast",
+      "Pootharekulu - Paper-thin sweet delicacy"
+    ],
+    experience: "Join cooking classes and food heritage tours",
+    significance: "One of India's spiciest regional cuisines"
+  },
+  {
+    title: "Music & Literature",
+    category: "Arts",
+    icon: "🎵",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
+    description: "Telugu language and literature have a rich 1000-year history. Carnatic music thrives with legendary composers and performers who have enriched Indian classical music traditions.",
+    highlights: [
+      "Carnatic Music - Classical South Indian music tradition",
+      "Telugu Literature - Ancient and modern poetry",
+      "Devotional Compositions - Annamayya's kirtanas",
+      "Folk Songs - Burrakatha and Harikatha",
+      "Modern Cinema - Influential Telugu film industry"
+    ],
+    experience: "Attend music concerts and literary festivals",
+    significance: "Telugu is the third most spoken language in India"
+  },
+  {
+    title: "Temple Architecture",
+    category: "Architecture",
+    icon: "🛕",
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&h=600&fit=crop",
+    description: "Ancient temples showcase brilliant Dravidian and Vijayanagara architectural styles. Intricate carvings, towering gopurams, and sacred sculptures tell stories of divine legends.",
+    highlights: [
+      "Tirumala Temple - Dravidian architectural marvel",
+      "Lepakshi Temple - Vijayanagara style with hanging pillar",
+      "Simhachalam Temple - Kalinga architecture influence",
+      "Thousand Pillar Temple - Chalukyan architecture",
+      "Undavalli Caves - Rock-cut temple architecture"
+    ],
+    experience: "Guided heritage walks and photography tours",
+    significance: "Some temples date back over 1000 years"
+  },
+  {
+    title: "Textile Traditions",
+    category: "Handloom",
+    icon: "🧵",
+    image: "https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?w=800&h=600&fit=crop",
+    description: "Andhra Pradesh's handloom traditions produce exquisite sarees and fabrics. Each weaving cluster has distinct patterns, colors, and techniques passed through generations.",
+    highlights: [
+      "Pochampally Ikat - Geometric patterns with resist dyeing",
+      "Mangalagiri Cotton - Fine handloom cotton sarees",
+      "Venkatagiri Sarees - Ultra-fine cotton weaves",
+      "Uppada Silk - Lightweight silk with jamdani work",
+      "Dharmavaram Silk - Rich silk with brocade borders"
+    ],
+    experience: "Visit weaving centers and buy directly from artisans",
+    significance: "GI tagged handloom products"
+  },
+  {
+    title: "Tribal Culture",
+    category: "Indigenous",
+    icon: "🏘️",
+    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=600&fit=crop",
+    description: "Indigenous tribal communities preserve unique customs, art forms, and sustainable living practices. Their vibrant culture offers insights into harmony with nature.",
+    highlights: [
+      "Dhimsa Dance - Tribal harvest dance of Koyas",
+      "Tribal Art - Wall paintings and basket weaving",
+      "Traditional Medicine - Herbal healing knowledge",
+      "Tribal Jewelry - Silver ornaments and beadwork",
+      "Forest Conservation - Indigenous ecological wisdom"
+    ],
+    experience: "Cultural immersion in tribal villages",
+    significance: "33 scheduled tribes with distinct identities"
+  },
+  {
+    title: "Martial Arts",
+    category: "Physical Culture",
+    icon: "🥋",
+    image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&h=600&fit=crop",
+    description: "Ancient martial traditions showcase warrior heritage. These combat forms combine physical prowess with spiritual discipline and traditional weapons mastery.",
+    highlights: [
+      "Silambam - Staff fighting martial art",
+      "Malla Yuddha - Traditional wrestling",
+      "Kathi Samu - Stick fighting technique",
+      "Pehlwani - Indian wrestling tradition",
+      "Archery - Traditional bow and arrow skills"
+    ],
+    experience: "Watch demonstrations and training sessions",
+    significance: "Part of ancient warrior training traditions"
+  },
+  {
+    title: "Folk Arts",
+    category: "Traditional Arts",
+    icon: "🎭",
+    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=600&fit=crop",
+    description: "Rich folk art traditions include storytelling, puppetry, and street performances. These arts entertain while preserving oral history and moral teachings.",
+    highlights: [
+      "Tholu Bommalata - Leather shadow puppetry",
+      "Veethi Bhagavatam - Street play performances",
+      "Harikatha - Musical storytelling tradition",
+      "Oggukatha - Ballad singing with dance",
+      "Kolatam - Stick dance by women"
+    ],
+    experience: "Attend folk festivals and village performances",
+    significance: "UNESCO intangible cultural heritage elements"
+  },
+  {
+    title: "Religious Diversity",
+    category: "Spirituality",
+    icon: "🕉️",
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&h=600&fit=crop",
+    description: "The state embraces multiple faiths with ancient temples, Buddhist sites, mosques, and churches coexisting harmoniously. Each tradition contributes to the cultural mosaic.",
+    highlights: [
+      "Hindu Temples - Major pilgrimage centers",
+      "Buddhist Heritage - Amaravati and Nagarjunakonda",
+      "Islamic Architecture - Mosques and tombs",
+      "Christian Churches - Colonial era heritage",
+      "Jain Temples - Ancient Jain sites"
+    ],
+    experience: "Multi-faith heritage tours",
+    significance: "Centuries of religious harmony and syncretism"
+  },
+  {
+    title: "Agricultural Festivals",
+    category: "Rural Traditions",
+    icon: "🌾",
+    image: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&h=600&fit=crop",
+    description: "Farming communities celebrate seasonal cycles with colorful harvest festivals. These celebrations honor nature, cattle, and agricultural prosperity.",
+    highlights: [
+      "Sankranti - Harvest festival with Bhogi, Sankranti, Kanuma",
+      "Bonalu - Goddess worship during monsoon",
+      "Atla Tadde - Women's festival for family welfare",
+      "Varalakshmi Vratam - Prosperity prayers",
+      "Cattle festivals - Honoring farm animals"
+    ],
+    experience: "Participate in village harvest celebrations",
+    significance: "Connects urban population with agrarian roots"
+  }
+];
+
+const categories = ["All", "Performing Arts", "Handicrafts", "Traditions", "Food Culture", "Arts", "Architecture", "Handloom", "Indigenous", "Physical Culture", "Traditional Arts", "Spirituality", "Rural Traditions"];
+---
+
+<Layout title="Cultural Heritage - Andhra Pradesh Tourism">
+  <div class="culture-hero">
+    <div class="culture-hero-overlay">
+      <div class="container">
+        <h1 class="culture-hero-title">Rich Cultural Heritage</h1>
+        <p class="culture-hero-subtitle">Experience the timeless traditions, arts, and customs of Andhra Pradesh</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="culture-intro">
+    <div class="container">
+      <div class="intro-content">
+        <h2>A Living Legacy</h2>
+        <p>Andhra Pradesh's cultural tapestry is woven with threads of ancient traditions, classical arts, vibrant festivals, and time-honored crafts. From the spiritual rhythms of Kuchipudi to the intricate artistry of Kalamkari, from fiery Andhra cuisine to majestic temple architecture - every aspect reflects a civilization that has flourished for millennia. Discover a culture where the past lives harmoniously with the present.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="culture-filter">
+    <div class="container">
+      <div class="filter-buttons">
+        {categories.map((category) => (
+          <button class="filter-btn" data-category={category}>
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="culture-grid">
+    <div class="container">
+      <div class="grid-culture">
+        {culturalAspects.map((aspect) => (
+          <div class="culture-card" data-category={aspect.category}>
+            <div class="culture-icon-wrapper">
+              <span class="culture-icon">{aspect.icon}</span>
+            </div>
+            <div class="culture-image">
+              <img src={aspect.image} alt={aspect.title} />
+              <div class="culture-category-badge">{aspect.category}</div>
+            </div>
+            <div class="culture-content">
+              <h3>{aspect.title}</h3>
+              <p class="culture-description">{aspect.description}</p>
+              
+              <div class="culture-highlights">
+                <h4>Key Elements</h4>
+                <ul>
+                  {aspect.highlights.slice(0, 4).map((highlight) => (
+                    <li>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div class="culture-footer">
+                <div class="experience-info">
+                  <span class="info-icon">🎯</span>
+                  <span>{aspect.experience}</span>
+                </div>
+                <div class="significance-badge">
+                  <span class="badge-icon">⭐</span>
+                  <span>{aspect.significance}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cultural-calendar">
+    <div class="container">
+      <h2>Festival Calendar</h2>
+      <div class="calendar-grid">
+        <div class="month-card">
+          <h3>January</h3>
+          <p><strong>Sankranti</strong> - Harvest festival with kite flying and traditional sweets</p>
+        </div>
+        <div class="month-card">
+          <h3>February-March</h3>
+          <p><strong>Maha Shivaratri</strong> - Night-long prayers and celebrations at Srisailam</p>
+        </div>
+        <div class="month-card">
+          <h3>March-April</h3>
+          <p><strong>Ugadi</strong> - Telugu New Year with special rituals and festive meals</p>
+        </div>
+        <div class="month-card">
+          <h3>July-August</h3>
+          <p><strong>Bonalu</strong> - Goddess worship with colorful processions</p>
+        </div>
+        <div class="month-card">
+          <h3>September</h3>
+          <p><strong>Brahmotsavam</strong> - 9-day grand celebration at Tirumala</p>
+        </div>
+        <div class="month-card">
+          <h3>October-November</h3>
+          <p><strong>Diwali & Dussehra</strong> - Festival of lights and victory celebrations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preservation-efforts">
+    <div class="container">
+      <h2>Preserving Our Heritage</h2>
+      <div class="efforts-grid">
+        <div class="effort-card">
+          <div class="effort-icon">🏛️</div>
+          <h3>Cultural Centers</h3>
+          <p>Kalakshetras and cultural institutions promoting traditional arts and training new generations of artists.</p>
+        </div>
+        <div class="effort-card">
+          <div class="effort-icon">🎓</div>
+          <h3>Education Programs</h3>
+          <p>School curricula include regional arts, language, and cultural studies to keep traditions alive.</p>
+        </div>
+        <div class="effort-card">
+          <div class="effort-icon">🏆</div>
+          <h3>Artisan Support</h3>
+          <p>Government schemes and GI tags protect craftsmen and promote authentic handloom products.</p>
+        </div>
+        <div class="effort-card">
+          <div class="effort-icon">📚</div>
+          <h3>Documentation</h3>
+          <p>Museums and archives preserve ancient manuscripts, artifacts, and oral traditions for posterity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-culture">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Immerse Yourself in Our Culture</h2>
+        <p>Join workshops, attend performances, and experience living traditions firsthand</p>
+        <div class="cta-buttons">
+          <a href="/experiences" class="btn btn-primary">Cultural Experiences</a>
+          <a href="/contact" class="btn btn-secondary-cta">Plan Cultural Tour</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .culture-hero {
+    position: relative;
+    height: 65vh;
+    min-height: 500px;
+    background: linear-gradient(135deg, #5F8161 0%, #1E4D2B 100%);
+    overflow: hidden;
+  }
+
+  .culture-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F0DE8C' fill-opacity='0.08'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: bgMove 30s linear infinite;
+  }
+
+  @keyframes bgMove {
+    from { background-position: 0 0; }
+    to { background-position: 80px 80px; }
+  }
+
+  .culture-hero-overlay {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .culture-hero-title {
+    font-size: 4.5rem;
+    color: #F0DE8C;
+    margin-bottom: 1.5rem;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    animation: fadeInUp 0.8s ease;
+  }
+
+  .culture-hero-subtitle {
+    font-size: 1.6rem;
+    color: rgba(255,255,255,0.95);
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease;
+    line-height: 1.6;
+  }
+
+  .culture-intro {
+    padding: 60px 0;
+    background: white;
+  }
+
+  .intro-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .intro-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #555;
+  }
+
+  .culture-filter {
+    padding: 35px 0;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.08) 0%, rgba(184, 199, 127, 0.08) 100%);
+    position: sticky;
+    top: 70px;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  .filter-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 11px 22px;
+    border: 2px solid #5F8161;
+    background: white;
+    color: #1E4D2B;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--gradient-primary);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(30, 77, 43, 0.3);
+  }
+
+  .culture-grid {
+    padding: 70px 0;
+    background: linear-gradient(to bottom, #f9faf5 0%, #ffffff 50%, #f9faf5 100%);
+  }
+
+  .grid-culture {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 35px;
+  }
+
+  .culture-card {
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 35px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .culture-card:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 20px 50px rgba(30, 77, 43, 0.2);
+  }
+
+  .culture-icon-wrapper {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 3;
+  }
+
+  .culture-icon {
+    font-size: 3.2rem;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4));
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .culture-image {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+  }
+
+  .culture-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+
+  .culture-card:hover .culture-image img {
+    transform: scale(1.12) rotate(1deg);
+  }
+
+  .culture-category-badge {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: var(--gradient-warm);
+    color: #1E4D2B;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+
+  .culture-content {
+    padding: 25px;
+  }
+
+  .culture-content h3 {
+    font-size: 1.9rem;
+    margin-bottom: 12px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .culture-description {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .culture-highlights {
+    margin: 20px 0;
+    padding: 18px;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.06) 0%, rgba(184, 199, 127, 0.06) 100%);
+    border-radius: 15px;
+    border-left: 4px solid #B8C77F;
+  }
+
+  .culture-highlights h4 {
+    font-size: 1.05rem;
+    color: #1E4D2B;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .culture-highlights ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .culture-highlights li {
+    font-size: 0.88rem;
+    color: #5F8161;
+    padding: 6px 0;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .culture-highlights li::before {
+    content: '🎨';
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+  }
+
+  .culture-footer {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 2px solid #f0f0f0;
+  }
+
+  .experience-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .info-icon {
+    font-size: 1.2rem;
+  }
+
+  .significance-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: linear-gradient(135deg, rgba(30, 77, 43, 0.1) 0%, rgba(95, 129, 97, 0.1) 100%);
+    padding: 8px 15px;
+    border-radius: 18px;
+    font-size: 0.85rem;
+    color: #1E4D2B;
+    font-weight: 600;
+  }
+
+  .badge-icon {
+    font-size: 1rem;
+  }
+
+  .cultural-calendar {
+    padding: 70px 0;
+    background: linear-gradient(135deg, rgba(95, 129, 97, 0.05) 0%, rgba(30, 77, 43, 0.05) 100%);
+  }
+
+  .cultural-calendar h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+  }
+
+  .month-card {
+    background: white;
+    padding: 28px 22px;
+    border-radius: 18px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+    border-top: 4px solid #B8C77F;
+  }
+
+  .month-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(30, 77, 43, 0.15);
+  }
+
+  .month-card h3 {
+    font-size: 1.5rem;
+    color: #1E4D2B;
+    margin-bottom: 12px;
+  }
+
+  .month-card p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+
+  .preservation-efforts {
+    padding: 70px 0;
+    background: white;
+  }
+
+  .preservation-efforts h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    background: var(--gradient-sunset);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .efforts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  .effort-card {
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.05) 0%, rgba(184, 199, 127, 0.05) 100%);
+    padding: 35px 28px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    transition: all 0.3s;
+  }
+
+  .effort-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(30, 77, 43, 0.12);
+  }
+
+  .effort-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+
+  .effort-card h3 {
+    font-size: 1.6rem;
+    color: #1E4D2B;
+    margin-bottom: 15px;
+  }
+
+  .effort-card p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .cta-culture {
+    padding: 90px 0;
+    background: var(--gradient-primary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-culture::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -15%;
+    width: 50%;
+    height: 180%;
+    background: radial-gradient(circle, rgba(240, 222, 140, 0.12) 0%, transparent 70%);
+    animation: rotate 35s linear infinite;
+  }
+
+  .cta-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-content h2 {
+    font-size: 3.5rem;
+    color: #F0DE8C;
+    margin-bottom: 20px;
+  }
+
+  .cta-content p {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 40px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+  }
+
+  .cta-buttons .btn-primary {
+    background: var(--gradient-secondary);
+    color: #1E4D2B;
+  }
+
+  .cta-buttons .btn-primary:hover {
+    background: linear-gradient(135deg, #F0DE8C 0%, #B8C77F 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary-cta {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+
+  .btn-secondary-cta:hover {
+    background: white;
+    color: #1E4D2B;
+  }
+
+  @media (max-width: 768px) {
+    .culture-hero-title {
+      font-size: 2.8rem;
+    }
+
+    .culture-hero-subtitle {
+      font-size: 1.3rem;
+    }
+
+    .grid-culture {
+      grid-template-columns: 1fr;
+    }
+
+    .intro-content h2 {
+      font-size: 2.2rem;
+    }
+
+    .cultural-calendar h2,
+    .preservation-efforts h2,
+    .cta-content h2 {
+      font-size: 2.2rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .filter-buttons {
+      gap: 8px;
+    }
+
+    .filter-btn {
+      font-size: 0.85rem;
+      padding: 9px 18px;
+    }
+  }
+</style>
+
+<script>
+  // Filter functionality
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const cultureCards = document.querySelectorAll('.culture-card');
+
+  filterButtons[0]?.classList.add('active');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+      
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      cultureCards.forEach(card => {
+        if (category === 'All' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+          card.style.animation = 'fadeInUp 0.6s ease forwards';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

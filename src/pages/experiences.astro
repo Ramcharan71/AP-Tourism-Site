@@ -1,0 +1,832 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const experiences = [
+  {
+    title: "Temple Pilgrimage",
+    category: "Spiritual",
+    icon: "🛕",
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&h=600&fit=crop",
+    description: "Embark on a soul-enriching journey through ancient temples and sacred sites. Experience divine darshan at Tirumala, seek blessings at Kanaka Durga, and witness architectural marvels.",
+    highlights: [
+      "Tirumala Venkateswara Temple - One of the richest temples",
+      "Kanaka Durga Temple - Goddess of power",
+      "Srisailam - Sacred Jyotirlinga",
+      "Simhachalam - Narasimha Avatar temple",
+      "Annavaram - Hilltop divine experience"
+    ],
+    duration: "3-7 days",
+    difficulty: "Easy",
+    bestFor: "Spiritual seekers, Devotees",
+    packages: ["Temple Circuit Tour", "Darshan Packages", "Guided Spiritual Tours"]
+  },
+  {
+    title: "Beach Escapades",
+    category: "Nature",
+    icon: "🏖️",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop",
+    description: "Relax on pristine golden beaches along the 974 km coastline. From the bustling RK Beach to serene Bheemunipatnam, experience coastal paradise with water sports and seafood delights.",
+    highlights: [
+      "RK Beach Visakhapatnam - Most popular beach",
+      "Rushikonda Beach - Water sports hub",
+      "Bheemunipatnam Beach - Dutch heritage",
+      "Mypadu Beach - Pristine and clean",
+      "Vodarevu Beach - Turtle nesting site"
+    ],
+    duration: "2-5 days",
+    difficulty: "Easy",
+    bestFor: "Families, Beach lovers, Water sports enthusiasts",
+    packages: ["Beach Hopping Tour", "Water Sports Package", "Coastal Retreat"]
+  },
+  {
+    title: "Wildlife Safari",
+    category: "Adventure",
+    icon: "🦁",
+    image: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=800&h=600&fit=crop",
+    description: "Explore diverse wildlife in dense forests and sanctuaries. Spot tigers, leopards, elephants, and rare bird species in their natural habitat across protected reserves.",
+    highlights: [
+      "Nagarjunsagar-Srisailam Tiger Reserve - Largest in India",
+      "Coringa Wildlife Sanctuary - Mangrove ecosystem",
+      "Nelapattu Bird Sanctuary - Pelican haven",
+      "Pulicat Lake - Flamingo sanctuary",
+      "Kolleru Lake - Largest freshwater lake"
+    ],
+    duration: "2-4 days",
+    difficulty: "Moderate",
+    bestFor: "Nature lovers, Bird watchers, Photographers",
+    packages: ["Safari Tours", "Bird Watching Expeditions", "Photography Tours"]
+  },
+  {
+    title: "Heritage Walks",
+    category: "Culture",
+    icon: "🏛️",
+    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=600&fit=crop",
+    description: "Walk through centuries of history exploring ancient forts, palaces, and archaeological sites. Discover Vijayanagara architecture, Buddhist stupas, and colonial heritage.",
+    highlights: [
+      "Chandragiri Fort - Vijayanagara architecture",
+      "Undavalli Caves - Rock-cut architecture",
+      "Amaravati Buddhist Site - 2000 years old",
+      "Lepakshi Temple - Hanging pillar mystery",
+      "Kondapalli Fort - Historic military base"
+    ],
+    duration: "1-3 days",
+    difficulty: "Easy to Moderate",
+    bestFor: "History buffs, Architecture enthusiasts, Students",
+    packages: ["Heritage Circuit Tour", "Archaeological Walks", "Cultural Immersion"]
+  },
+  {
+    title: "Hill Station Retreat",
+    category: "Nature",
+    icon: "⛰️",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+    description: "Escape to scenic hill stations with pleasant climate, lush valleys, and breathtaking viewpoints. Perfect for relaxation, trekking, and nature photography.",
+    highlights: [
+      "Araku Valley - Coffee plantations & tribal culture",
+      "Horsley Hills - Year-round pleasant weather",
+      "Lambasingi - Only place with snowfall",
+      "Ananthagiri Hills - Misty landscapes",
+      "Tyda - Nature camps & zip-lining"
+    ],
+    duration: "2-4 days",
+    difficulty: "Easy to Moderate",
+    bestFor: "Nature lovers, Honeymooners, Trekkers",
+    packages: ["Hill Station Tours", "Adventure Camps", "Romantic Getaways"]
+  },
+  {
+    title: "Culinary Journey",
+    category: "Food",
+    icon: "🍛",
+    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&h=600&fit=crop",
+    description: "Savor the fiery flavors of authentic Andhra cuisine. From traditional meals to street food, experience the rich culinary heritage with hands-on cooking sessions.",
+    highlights: [
+      "Andhra Thali - Complete traditional meal",
+      "Hyderabadi Biryani - Aromatic delight",
+      "Gongura Pachadi - Tangy curry",
+      "Pesarattu - Green gram dosa",
+      "Pulihora - Tamarind rice special"
+    ],
+    duration: "1-3 days",
+    difficulty: "Easy",
+    bestFor: "Food enthusiasts, Culture seekers",
+    packages: ["Food Tours", "Cooking Classes", "Restaurant Hopping"]
+  },
+  {
+    title: "Adventure Sports",
+    category: "Adventure",
+    icon: "🪂",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+    description: "Get your adrenaline pumping with thrilling adventure activities. From paragliding to rappelling, water sports to trekking - experience the wild side of AP.",
+    highlights: [
+      "Paragliding at Pavuluru",
+      "Trekking in Eastern Ghats",
+      "Rappelling at Gandikota",
+      "Scuba diving at Visakhapatnam",
+      "Kayaking in mangroves"
+    ],
+    duration: "1-5 days",
+    difficulty: "Moderate to Challenging",
+    bestFor: "Adventure seekers, Thrill seekers, Youth groups",
+    packages: ["Adventure Combo", "Extreme Sports", "Trekking Expeditions"]
+  },
+  {
+    title: "Rural & Tribal Tourism",
+    category: "Culture",
+    icon: "🏘️",
+    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=600&fit=crop",
+    description: "Immerse yourself in authentic village life and tribal culture. Experience traditional crafts, folk arts, organic farming, and warm hospitality.",
+    highlights: [
+      "Araku Tribal Museum - Indigenous heritage",
+      "Etikoppaka Toys Village - Wooden crafts",
+      "Machilipatnam Kalamkari - Hand-painted art",
+      "Kondapalli Toys - Traditional craftsmanship",
+      "Village homestays - Authentic experience"
+    ],
+    duration: "2-4 days",
+    difficulty: "Easy",
+    bestFor: "Culture enthusiasts, Photographers, Social travelers",
+    packages: ["Village Tours", "Craft Workshops", "Homestay Experiences"]
+  },
+  {
+    title: "Backwater Cruise",
+    category: "Nature",
+    icon: "🚤",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
+    description: "Navigate through serene backwaters, lush mangroves, and coconut groves. Experience the tranquil beauty of Konaseema's delta region and coastal ecosystems.",
+    highlights: [
+      "Konaseema backwaters - God's own creation",
+      "Krishna River cruise",
+      "Mangrove kayaking",
+      "Coringa reserve boat safari",
+      "Houseboat stays"
+    ],
+    duration: "1-3 days",
+    difficulty: "Easy",
+    bestFor: "Peace seekers, Nature lovers, Photographers",
+    packages: ["Houseboat Tours", "Backwater Cruises", "Eco-tourism"]
+  },
+  {
+    title: "Camping & Stargazing",
+    category: "Adventure",
+    icon: "⛺",
+    image: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=600&fit=crop",
+    description: "Camp under the starlit sky in scenic locations. From desert camping at Gandikota to forest camps, experience nature's tranquility away from city lights.",
+    highlights: [
+      "Gandikota Canyon - Grand Canyon of India",
+      "Belum Caves camping",
+      "Beach camping at Bheemunipatnam",
+      "Forest camps in Nallamala",
+      "Lambasingi winter camping"
+    ],
+    duration: "1-3 days",
+    difficulty: "Moderate",
+    bestFor: "Adventure lovers, Astronomy enthusiasts, Groups",
+    packages: ["Camping Packages", "Astronomy Nights", "Bonfire Experiences"]
+  },
+  {
+    title: "Wellness & Yoga",
+    category: "Wellness",
+    icon: "🧘",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop",
+    description: "Rejuvenate your mind, body, and soul with yoga retreats, Ayurvedic treatments, and meditation sessions in serene natural settings.",
+    highlights: [
+      "Yoga retreats in hill stations",
+      "Ayurvedic wellness centers",
+      "Meditation at ashrams",
+      "Nature therapy sessions",
+      "Spa & wellness resorts"
+    ],
+    duration: "3-7 days",
+    difficulty: "Easy",
+    bestFor: "Wellness seekers, Stress relief, Health conscious",
+    packages: ["Yoga Retreats", "Wellness Packages", "Detox Programs"]
+  },
+  {
+    title: "Photography Expeditions",
+    category: "Photography",
+    icon: "📸",
+    image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=600&fit=crop",
+    description: "Capture stunning landscapes, wildlife, heritage sites, and vibrant culture. Guided photo tours to the most photogenic locations with expert tips.",
+    highlights: [
+      "Sunrise at Gandikota gorge",
+      "Wildlife photography in reserves",
+      "Temple architecture shots",
+      "Tribal portrait photography",
+      "Landscape photography workshops"
+    ],
+    duration: "3-7 days",
+    difficulty: "Moderate",
+    bestFor: "Photographers, Content creators, Instagram enthusiasts",
+    packages: ["Photo Tours", "Photography Workshops", "Guided Expeditions"]
+  }
+];
+
+const categories = ["All", "Spiritual", "Nature", "Adventure", "Culture", "Food", "Wellness", "Photography"];
+---
+
+<Layout title="Unique Experiences - Andhra Pradesh Tourism">
+  <div class="experiences-hero">
+    <div class="experiences-hero-overlay">
+      <div class="container">
+        <h1 class="experiences-hero-title">Unforgettable Experiences</h1>
+        <p class="experiences-hero-subtitle">Create memories that last a lifetime in the heart of South India</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="experiences-intro">
+    <div class="container">
+      <div class="intro-content">
+        <h2>What Makes Andhra Pradesh Special?</h2>
+        <p>From spiritual odysseys to adrenaline-pumping adventures, from culinary delights to serene nature retreats - Andhra Pradesh offers experiences for every traveler. Immerse yourself in rich cultural heritage, explore diverse landscapes, and create unforgettable memories.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="experiences-filter">
+    <div class="container">
+      <div class="filter-buttons">
+        {categories.map((category) => (
+          <button class="filter-btn" data-category={category}>
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="experiences-grid">
+    <div class="container">
+      <div class="grid-experiences">
+        {experiences.map((exp) => (
+          <div class="experience-card" data-category={exp.category}>
+            <div class="experience-icon">{exp.icon}</div>
+            <div class="experience-image">
+              <img src={exp.image} alt={exp.title} />
+              <div class="experience-category-badge">{exp.category}</div>
+            </div>
+            <div class="experience-content">
+              <h3>{exp.title}</h3>
+              <p class="experience-description">{exp.description}</p>
+              
+              <div class="experience-highlights">
+                <h4>What to Expect</h4>
+                <ul>
+                  {exp.highlights.slice(0, 4).map((highlight) => (
+                    <li>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div class="experience-meta">
+                <div class="meta-item">
+                  <span class="meta-icon">⏱️</span>
+                  <span>{exp.duration}</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-icon">📊</span>
+                  <span>{exp.difficulty}</span>
+                </div>
+              </div>
+
+              <div class="experience-footer">
+                <p class="best-for"><strong>Best for:</strong> {exp.bestFor}</p>
+                <button class="book-btn">Book Now</button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="why-choose">
+    <div class="container">
+      <h2>Why Choose Our Experiences?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">✅</div>
+          <h3>Expert Guides</h3>
+          <p>Experienced local guides who know the best spots and hidden gems</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">💯</div>
+          <h3>Authentic Experiences</h3>
+          <p>Genuine cultural immersion and authentic local interactions</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🛡️</div>
+          <h3>Safety First</h3>
+          <p>All safety measures and insurance coverage for adventure activities</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <h3>Best Value</h3>
+          <p>Competitive pricing with no hidden costs or surprises</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready for an Adventure?</h2>
+        <p>Contact us to customize your perfect Andhra Pradesh experience</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn-primary">Get in Touch</a>
+          <a href="/plan-trip" class="btn btn-secondary-cta">Plan Your Trip</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .experiences-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 450px;
+    background: linear-gradient(135deg, #1E4D2B 0%, #5F8161 100%);
+    overflow: hidden;
+  }
+
+  .experiences-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(240, 222, 140, 0.1) 0%, transparent 50%);
+    animation: pulse 15s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .experiences-hero-overlay {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .experiences-hero-title {
+    font-size: 4rem;
+    color: #F0DE8C;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease;
+  }
+
+  .experiences-hero-subtitle {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.95);
+    max-width: 700px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease;
+  }
+
+  .experiences-intro {
+    padding: 60px 0;
+    background: white;
+  }
+
+  .intro-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .intro-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #666;
+  }
+
+  .experiences-filter {
+    padding: 30px 0;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.08) 0%, rgba(184, 199, 127, 0.08) 100%);
+    position: sticky;
+    top: 70px;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  .filter-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 12px 24px;
+    border: 2px solid #5F8161;
+    background: white;
+    color: #1E4D2B;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--gradient-primary);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(30, 77, 43, 0.3);
+  }
+
+  .experiences-grid {
+    padding: 80px 0;
+    background: linear-gradient(to bottom, #f9faf5 0%, #ffffff 50%, #f9faf5 100%);
+  }
+
+  .grid-experiences {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+  }
+
+  .experience-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .experience-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(30, 77, 43, 0.2);
+  }
+
+  .experience-icon {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 2.2rem;
+    z-index: 2;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    animation: bounce 2s ease infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .experience-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .experience-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+
+  .experience-card:hover .experience-image img {
+    transform: scale(1.15) rotate(2deg);
+  }
+
+  .experience-category-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: var(--gradient-warm);
+    color: #1E4D2B;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .experience-content {
+    padding: 20px;
+  }
+
+  .experience-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .experience-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+
+  .experience-highlights {
+    margin: 15px 0;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.05) 0%, rgba(184, 199, 127, 0.05) 100%);
+    border-radius: 12px;
+  }
+
+  .experience-highlights h4 {
+    font-size: 0.95rem;
+    color: #1E4D2B;
+    margin-bottom: 10px;
+  }
+
+  .experience-highlights ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .experience-highlights li {
+    font-size: 0.85rem;
+    color: #5F8161;
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .experience-highlights li::before {
+    content: '✨';
+    position: absolute;
+    left: 0;
+  }
+
+  .experience-meta {
+    display: flex;
+    gap: 12px;
+    margin: 12px 0;
+    padding: 10px 0;
+    border-top: 2px solid #f0f0f0;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .meta-icon {
+    font-size: 1rem;
+  }
+
+  .experience-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .best-for {
+    font-size: 0.8rem;
+    color: #666;
+    max-width: 60%;
+  }
+
+  .book-btn {
+    background: var(--gradient-secondary);
+    color: #1E4D2B;
+    padding: 8px 20px;
+    border-radius: 22px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+
+  .book-btn:hover {
+    background: var(--gradient-warm);
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(240, 222, 140, 0.4);
+  }
+
+  .why-choose {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(30, 77, 43, 0.05) 0%, rgba(95, 129, 97, 0.05) 100%);
+  }
+
+  .why-choose h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 60px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 35px;
+  }
+
+  .benefit-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(30, 77, 43, 0.15);
+  }
+
+  .benefit-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+
+  .benefit-card h3 {
+    font-size: 1.5rem;
+    color: #1E4D2B;
+    margin-bottom: 15px;
+  }
+
+  .benefit-card p {
+    color: #666;
+    line-height: 1.7;
+  }
+
+  .cta-section {
+    padding: 100px 0;
+    background: var(--gradient-primary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(240, 222, 140, 0.1) 0%, transparent 70%);
+    animation: rotate 30s linear infinite;
+  }
+
+  .cta-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-content h2 {
+    font-size: 3.5rem;
+    color: #F0DE8C;
+    margin-bottom: 20px;
+  }
+
+  .cta-content p {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 40px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .cta-buttons .btn-primary {
+    background: var(--gradient-secondary);
+    color: #1E4D2B;
+  }
+
+  .cta-buttons .btn-primary:hover {
+    background: linear-gradient(135deg, #F0DE8C 0%, #B8C77F 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary-cta {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+
+  .btn-secondary-cta:hover {
+    background: white;
+    color: #1E4D2B;
+  }
+
+  @media (max-width: 768px) {
+    .experiences-hero-title {
+      font-size: 2.5rem;
+    }
+
+    .experiences-hero-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .grid-experiences {
+      grid-template-columns: 1fr;
+    }
+
+    .intro-content h2 {
+      font-size: 2rem;
+    }
+
+    .why-choose h2,
+    .cta-content h2 {
+      font-size: 2rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .filter-buttons {
+      gap: 8px;
+    }
+
+    .filter-btn {
+      font-size: 0.85rem;
+      padding: 10px 18px;
+    }
+
+    .experience-footer {
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .best-for {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Filter functionality
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const experienceCards = document.querySelectorAll('.experience-card');
+
+  filterButtons[0]?.classList.add('active');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+      
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      experienceCards.forEach(card => {
+        if (category === 'All' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+          card.style.animation = 'fadeInUp 0.6s ease forwards';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

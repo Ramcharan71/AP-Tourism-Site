@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Privacy Policy - Andhra Pradesh Tourism">
+  <div class="policy-hero">
+    <div class="container">
+      <h1>Privacy Policy</h1>
+      <p>Last updated: January 2025</p>
+    </div>
+  </div>
+
+  <section class="policy-content">
+    <div class="container">
+      <div class="policy-wrapper">
+        
+        <div class="policy-section">
+          <h2>1. Information We Collect</h2>
+          <p>We collect information that you provide directly to us, including:</p>
+          <ul>
+            <li>Name, email address, and contact information</li>
+            <li>Travel preferences and booking information</li>
+            <li>Payment and billing information</li>
+            <li>Communication preferences</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2>2. How We Use Your Information</h2>
+          <p>We use the collected information for:</p>
+          <ul>
+            <li>Processing bookings and reservations</li>
+            <li>Sending travel confirmations and updates</li>
+            <li>Improving our services and user experience</li>
+            <li>Marketing communications (with your consent)</li>
+          </ul>
+        </div>
+
+        <div class="policy-section">
+          <h2>3. Contact Us</h2>
+          <p>For questions about this Privacy Policy:</p>
+          <ul>
+            <li>Email: privacy@aptourism.gov.in</li>
+            <li>Phone: 1800-XXX-XXXX</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .policy-hero {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 100px 0 60px;
+    text-align: center;
+  }
+
+  .policy-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #F0DE8C;
+  }
+
+  .policy-content {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .policy-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .policy-section {
+    margin-bottom: 40px;
+  }
+
+  .policy-section h2 {
+    font-size: 1.8rem;
+    color: #1E4D2B;
+    margin-bottom: 20px;
+  }
+
+  .policy-section p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+  }
+
+  .policy-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .policy-section li {
+    padding: 8px 0 8px 30px;
+    position: relative;
+    color: #666;
+  }
+
+  .policy-section li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #B8C77F;
+    font-weight: bold;
+  }
+</style>

@@ -1,0 +1,561 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DestinationCard from '../components/DestinationCard.astro';
+import Footer from '../components/Footer.astro';
+
+const destinations = [
+  {
+    title: "Tirupati",
+    category: "Spiritual",
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&h=600&fit=crop",
+    description: "Home to the world-famous Sri Venkateswara Temple, one of the richest and most visited pilgrimage sites. Located on the Tirumala hills, it attracts millions of devotees annually.",
+    highlights: ["Sri Venkateswara Temple", "Tirumala Hills", "Sri Padmavathi Temple", "Chandragiri Fort"],
+    bestTime: "September to February",
+    link: "#tirupati"
+  },
+  {
+    title: "Visakhapatnam",
+    category: "Beach & City",
+    image: "https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800&h=600&fit=crop",
+    description: "The jewel of the East Coast, Vizag offers stunning beaches, lush green hills, ancient Buddhist sites, and a vibrant port city atmosphere. A perfect blend of nature and modernity.",
+    highlights: ["RK Beach", "Kailasagiri", "Borra Caves", "Submarine Museum"],
+    bestTime: "October to March",
+    link: "#visakhapatnam"
+  },
+  {
+    title: "Araku Valley",
+    category: "Hill Station",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+    description: "A picturesque hill station known for its coffee plantations, tribal culture, waterfalls, and scenic beauty. The journey through Eastern Ghats is equally mesmerizing.",
+    highlights: ["Coffee Plantations", "Borra Caves", "Tribal Museum", "Katiki Waterfalls"],
+    bestTime: "October to March",
+    link: "#araku"
+  },
+  {
+    title: "Vijayawada",
+    category: "Heritage & Culture",
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop",
+    description: "The cultural capital situated on the banks of Krishna River, known for the sacred Kanaka Durga Temple and rich historical significance as a trading hub.",
+    highlights: ["Kanaka Durga Temple", "Undavalli Caves", "Prakasam Barrage", "Bhavani Island"],
+    bestTime: "November to February",
+    link: "#vijayawada"
+  },
+  {
+    title: "Amaravati",
+    category: "Buddhist Heritage",
+    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=600&fit=crop",
+    description: "Ancient Buddhist site with magnificent stupas and sculptures dating back to 200 BCE. One of the most important Buddhist pilgrimage sites in India.",
+    highlights: ["Amaravati Stupa", "Dhyana Buddha Statue", "Archaeological Museum", "Amareswara Temple"],
+    bestTime: "October to March",
+    link: "#amaravati"
+  },
+  {
+    title: "Lepakshi",
+    category: "Architecture",
+    image: "https://images.unsplash.com/photo-1609920658906-8223bd289001?w=800&h=600&fit=crop",
+    description: "Famous for the stunning Veerabhadra Temple with intricate Vijayanagara architecture, hanging pillar, and the world's largest monolithic Nandi bull.",
+    highlights: ["Hanging Pillar", "Nandi Bull", "Ceiling Paintings", "Veerabhadra Temple"],
+    bestTime: "October to March",
+    link: "#lepakshi"
+  },
+  {
+    title: "Srisailam",
+    category: "Spiritual & Nature",
+    image: "https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=800&h=600&fit=crop",
+    description: "One of the 12 Jyotirlingas of Lord Shiva, nestled in the Nallamala forest. Offers spiritual solace along with wildlife sanctuary and scenic Krishna River views.",
+    highlights: ["Mallikarjuna Temple", "Srisailam Dam", "Nagarjuna Sagar", "Wildlife Sanctuary"],
+    bestTime: "September to March",
+    link: "#srisailam"
+  },
+  {
+    title: "Horsley Hills",
+    category: "Hill Station",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+    description: "Serene hill station with pleasant climate year-round, offering stunning valley views, adventure activities, and natural beauty at 1,265 meters altitude.",
+    highlights: ["View Points", "Environmental Park", "Kaigal Falls", "Rappelling & Zip-lining"],
+    bestTime: "Throughout the year",
+    link: "#horsley"
+  },
+  {
+    title: "Konaseema",
+    category: "Backwaters",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
+    description: "Known as the 'God's Own Creation', this delta region offers lush coconut groves, serene backwaters, and authentic coastal village experience.",
+    highlights: ["Backwater Cruises", "Coconut Groves", "Draksharama Temple", "Coringa Wildlife"],
+    bestTime: "October to February",
+    link: "#konaseema"
+  },
+  {
+    title: "Gandikota",
+    category: "Adventure",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+    description: "Often called the 'Grand Canyon of India', this ancient fort offers breathtaking gorge views carved by Pennar River and spectacular sunset vistas.",
+    highlights: ["Gandikota Fort", "Pennar Gorge", "Belum Caves", "Camping"],
+    bestTime: "October to February",
+    link: "#gandikota"
+  },
+  {
+    title: "Annavaram",
+    category: "Spiritual",
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&h=600&fit=crop",
+    description: "Sacred hilltop temple dedicated to Lord Veera Venkata Satyanarayana Swamy, offering panoramic views and spiritual tranquility.",
+    highlights: ["Satyanarayana Temple", "Ratnagiri Hill", "Pampa River", "Ropeway"],
+    bestTime: "September to March",
+    link: "#annavaram"
+  },
+  {
+    title: "Pulicat Lake",
+    category: "Wildlife & Nature",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
+    description: "Second largest brackish water lagoon in India, a paradise for bird watchers with thousands of migratory birds, especially flamingos.",
+    highlights: ["Bird Watching", "Flamingos", "Boat Rides", "Dutch Cemetery"],
+    bestTime: "November to January",
+    link: "#pulicat"
+  }
+];
+
+const categories = ["All", "Spiritual", "Beach & City", "Hill Station", "Heritage & Culture", "Buddhist Heritage", "Architecture", "Nature", "Adventure", "Wildlife & Nature", "Backwaters"];
+---
+
+<Layout title="Explore Destinations - Andhra Pradesh Tourism">
+  <div class="destinations-hero">
+    <div class="destinations-hero-overlay">
+      <div class="container">
+        <h1 class="destinations-hero-title">Discover Andhra Pradesh</h1>
+        <p class="destinations-hero-subtitle">From ancient temples to pristine beaches, from lush hills to vibrant cities</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="destinations-filter">
+    <div class="container">
+      <div class="filter-buttons" id="filter-buttons">
+        {categories.map((category) => (
+          <button class="filter-btn" data-category={category}>
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="destinations-grid">
+    <div class="container">
+      <div class="grid-destinations">
+        {destinations.map((dest) => (
+          <div class="destination-detail-card" data-category={dest.category}>
+            <div class="card-image-wrapper">
+              <img src={dest.image} alt={dest.title} />
+              <div class="card-category-badge">{dest.category}</div>
+            </div>
+            <div class="card-detail-content">
+              <h3>{dest.title}</h3>
+              <p class="description">{dest.description}</p>
+              
+              <div class="highlights">
+                <h4>Top Attractions</h4>
+                <ul>
+                  {dest.highlights.map((highlight) => (
+                    <li>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div class="card-footer">
+                <div class="best-time">
+                  <span class="icon">🗓️</span>
+                  <span>Best Time: {dest.bestTime}</span>
+                </div>
+                <a href={dest.link} class="explore-btn">Explore More →</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="travel-tips">
+    <div class="container">
+      <h2>Travel Tips</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">🚗</div>
+          <h3>Getting Around</h3>
+          <p>Well-connected by road, rail, and air. Major cities have airports. State transport buses available for intercity travel.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🏨</div>
+          <h3>Accommodation</h3>
+          <p>Options range from luxury hotels to budget stays. AP Tourism provides guesthouses at major tourist spots.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🍛</div>
+          <h3>Local Cuisine</h3>
+          <p>Don't miss the spicy Andhra meals, Pulihora, Pesarattu, and famous Tirupati Laddu. Seafood is excellent in coastal areas.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">📸</div>
+          <h3>Photography</h3>
+          <p>Some temples restrict photography. Always ask permission before clicking pictures of local people and sacred sites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .destinations-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 400px;
+    background: linear-gradient(135deg, #1E4D2B 0%, #5F8161 100%);
+    overflow: hidden;
+  }
+
+  .destinations-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F0DE8C' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM36 0V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .destinations-hero-overlay {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .destinations-hero-title {
+    font-size: 3.5rem;
+    color: #F0DE8C;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease;
+  }
+
+  .destinations-hero-subtitle {
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.9);
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease;
+  }
+
+  .destinations-filter {
+    padding: 40px 0;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.08) 0%, rgba(184, 199, 127, 0.08) 100%);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 70px;
+    z-index: 100;
+  }
+
+  .filter-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    border: 2px solid #5F8161;
+    background: white;
+    color: #1E4D2B;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--gradient-primary);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(30, 77, 43, 0.3);
+  }
+
+  .destinations-grid {
+    padding: 60px 0;
+    background: linear-gradient(to bottom, #f9faf5 0%, #ffffff 100%);
+  }
+
+  .grid-destinations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+  }
+
+  .destination-detail-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.4s;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .destination-detail-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(30, 77, 43, 0.15);
+  }
+
+  .card-image-wrapper {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .destination-detail-card:hover .card-image-wrapper img {
+    transform: scale(1.1);
+  }
+
+  .card-category-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--gradient-secondary);
+    color: #1E4D2B;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  .card-detail-content {
+    padding: 20px;
+  }
+
+  .card-detail-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .highlights {
+    margin: 15px 0;
+  }
+
+  .highlights h4 {
+    font-size: 0.95rem;
+    color: #1E4D2B;
+    margin-bottom: 8px;
+  }
+
+  .highlights ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .highlights li {
+    font-size: 0.8rem;
+    color: #5F8161;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .highlights li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #B8C77F;
+    font-weight: bold;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    gap: 10px;
+  }
+
+  .best-time {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: #666;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .best-time span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .explore-btn {
+    background: var(--gradient-secondary);
+    color: #1E4D2B;
+    padding: 7px 16px;
+    border-radius: 18px;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .explore-btn:hover {
+    background: var(--gradient-warm);
+    transform: translateX(5px);
+  }
+
+  .travel-tips {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.1) 0%, rgba(184, 199, 127, 0.1) 100%);
+  }
+
+  .travel-tips h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  .tip-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+  }
+
+  .tip-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(30, 77, 43, 0.15);
+  }
+
+  .tip-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+  }
+
+  .tip-card h3 {
+    font-size: 1.3rem;
+    color: #1E4D2B;
+    margin-bottom: 10px;
+  }
+
+  .tip-card p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .destinations-hero-title {
+      font-size: 2.5rem;
+    }
+
+    .grid-destinations {
+      grid-template-columns: 1fr;
+    }
+
+    .highlights ul {
+      grid-template-columns: 1fr;
+    }
+
+    .filter-buttons {
+      gap: 8px;
+    }
+
+    .filter-btn {
+      font-size: 0.8rem;
+      padding: 8px 16px;
+    }
+
+    .card-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .best-time {
+      width: 100%;
+    }
+
+    .explore-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  // Filter functionality
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const destinationCards = document.querySelectorAll('.destination-detail-card');
+
+  filterButtons[0]?.classList.add('active');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+      
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      destinationCards.forEach(card => {
+        if (category === 'All' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+          card.style.animation = 'fadeInUp 0.6s ease forwards';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

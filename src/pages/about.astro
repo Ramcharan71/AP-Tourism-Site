@@ -1,0 +1,503 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const stats = [
+  { number: "974 km", label: "Coastline", icon: "🏖️" },
+  { number: "2000+", label: "Years of History", icon: "🏛️" },
+  { number: "33", label: "Tribal Communities", icon: "🏘️" },
+  { number: "49 Million", label: "Population", icon: "👥" }
+];
+
+const highlights = [
+  {
+    title: "Rich Cultural Heritage",
+    description: "Andhra Pradesh boasts over 2000 years of documented history, from ancient Buddhist sites to magnificent temples and forts.",
+    icon: "🎭"
+  },
+  {
+    title: "Natural Beauty",
+    description: "From pristine beaches along the Bay of Bengal to lush hill stations in the Eastern Ghats, experience diverse landscapes.",
+    icon: "🌄"
+  },
+  {
+    title: "Culinary Excellence",
+    description: "Famous for fiery Andhra cuisine, aromatic Hyderabadi biryani, and unique local delicacies that tantalize taste buds.",
+    icon: "🍛"
+  },
+  {
+    title: "Spiritual Destinations",
+    description: "Home to Tirumala Venkateswara Temple, one of the world's most visited pilgrimage sites, and numerous sacred shrines.",
+    icon: "🛕"
+  }
+];
+
+const team = [
+  {
+    role: "Tourism Department",
+    description: "Dedicated to promoting and preserving the cultural and natural heritage of Andhra Pradesh.",
+    contact: "tourism@ap.gov.in"
+  },
+  {
+    role: "Support Services",
+    description: "24/7 assistance for tourists with information, bookings, and emergency support.",
+    contact: "1800-XXX-XXXX (Toll Free)"
+  }
+];
+---
+
+<Layout title="About Us - Andhra Pradesh Tourism">
+  <div class="about-hero">
+    <div class="about-hero-overlay">
+      <div class="container">
+        <h1 class="about-hero-title">About Andhra Pradesh</h1>
+        <p class="about-hero-subtitle">Discover the Heart of South India</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="about-intro">
+    <div class="container">
+      <div class="intro-wrapper">
+        <div class="intro-text">
+          <h2>Welcome to Andhra Pradesh</h2>
+          <p>Andhra Pradesh, located on the southeastern coast of India, is a land where ancient traditions meet modern aspirations. Known as the "Rice Bowl of India," the state is blessed with a 974 km coastline, rich cultural heritage, and diverse natural beauty.</p>
+          <p>From the sacred temples of Tirupati to the pristine beaches of Visakhapatnam, from the historic Buddhist sites of Amaravati to the scenic hill stations of Araku Valley, Andhra Pradesh offers an unforgettable experience for every traveler.</p>
+          <p>Our state is renowned for its spicy cuisine, classical dance forms like Kuchipudi, intricate handicrafts, and warm hospitality. With a perfect blend of spirituality, adventure, culture, and nature, Andhra Pradesh invites you to explore its treasures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map((stat) => (
+          <div class="stat-card">
+            <div class="stat-icon">{stat.icon}</div>
+            <div class="stat-number">{stat.number}</div>
+            <div class="stat-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="highlights-section">
+    <div class="container">
+      <h2 class="section-title">What Makes Us Special</h2>
+      <div class="highlights-grid">
+        {highlights.map((highlight) => (
+          <div class="highlight-card">
+            <div class="highlight-icon">{highlight.icon}</div>
+            <h3>{highlight.title}</h3>
+            <p>{highlight.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mission-section">
+    <div class="container">
+      <div class="mission-content">
+        <h2>Our Mission</h2>
+        <p>To promote Andhra Pradesh as a premier tourist destination by showcasing its rich cultural heritage, natural beauty, and warm hospitality while ensuring sustainable tourism practices that benefit local communities and preserve our environment for future generations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div class="container">
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="team-grid">
+        {team.map((member) => (
+          <div class="team-card">
+            <h3>{member.role}</h3>
+            <p>{member.description}</p>
+            <a href={`mailto:${member.contact}`} class="contact-link">{member.contact}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Explore Andhra Pradesh?</h2>
+        <p>Start planning your unforgettable journey today</p>
+        <div class="cta-buttons">
+          <a href="/destinations" class="btn btn-primary">Explore Destinations</a>
+          <a href="/plan-trip" class="btn btn-secondary-cta">Plan Your Trip</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .about-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 400px;
+    background: linear-gradient(135deg, #1E4D2B 0%, #5F8161 100%);
+    overflow: hidden;
+  }
+
+  .about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F0DE8C' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: bgMove 20s linear infinite;
+  }
+
+  @keyframes bgMove {
+    from { background-position: 0 0; }
+    to { background-position: 60px 60px; }
+  }
+
+  .about-hero-overlay {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .about-hero-title {
+    font-size: 3.5rem;
+    color: #F0DE8C;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease;
+  }
+
+  .about-hero-subtitle {
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.95);
+    animation: fadeInUp 1s ease;
+  }
+
+  .about-intro {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .intro-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .intro-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+  }
+
+  .intro-text p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 25px;
+    text-align: justify;
+  }
+
+  .stats-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.1) 0%, rgba(184, 199, 127, 0.1) 100%);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 40px 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(30, 77, 43, 0.15);
+  }
+
+  .stat-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .highlights-section {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .highlight-card {
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.05) 0%, rgba(184, 199, 127, 0.05) 100%);
+    padding: 35px 28px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+  }
+
+  .highlight-card:hover {
+    transform: translateY(-8px);
+    border-color: #B8C77F;
+    box-shadow: 0 15px 40px rgba(30, 77, 43, 0.12);
+  }
+
+  .highlight-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+
+  .highlight-card h3 {
+    font-size: 1.6rem;
+    color: #1E4D2B;
+    margin-bottom: 15px;
+  }
+
+  .highlight-card p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .mission-section {
+    padding: 70px 0;
+    background: var(--gradient-primary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(240, 222, 140, 0.15) 0%, transparent 70%);
+    animation: rotate 30s linear infinite;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .mission-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mission-content h2 {
+    font-size: 2.8rem;
+    color: #F0DE8C;
+    margin-bottom: 25px;
+  }
+
+  .mission-content p {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.95);
+  }
+
+  .team-section {
+    padding: 80px 0;
+    background: linear-gradient(to bottom, #f9faf5 0%, #ffffff 100%);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .team-card {
+    background: white;
+    padding: 35px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+    text-align: center;
+  }
+
+  .team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(30, 77, 43, 0.15);
+  }
+
+  .team-card h3 {
+    font-size: 1.6rem;
+    color: #1E4D2B;
+    margin-bottom: 15px;
+  }
+
+  .team-card p {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+
+  .contact-link {
+    display: inline-block;
+    color: #5F8161;
+    font-weight: 600;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgba(240, 222, 140, 0.2) 0%, rgba(184, 199, 127, 0.2) 100%);
+    border-radius: 25px;
+    transition: all 0.3s;
+  }
+
+  .contact-link:hover {
+    background: var(--gradient-secondary);
+    color: #1E4D2B;
+    transform: scale(1.05);
+  }
+
+  .cta-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(95, 129, 97, 0.1) 0%, rgba(30, 77, 43, 0.1) 100%);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cta-content p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 35px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .cta-buttons .btn-primary {
+    background: var(--gradient-secondary);
+    color: #1E4D2B;
+  }
+
+  .cta-buttons .btn-primary:hover {
+    background: linear-gradient(135deg, #F0DE8C 0%, #B8C77F 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary-cta {
+    background: transparent;
+    color: #1E4D2B;
+    border: 2px solid #1E4D2B;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+
+  .btn-secondary-cta:hover {
+    background: rgba(30, 77, 43, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .about-hero-title {
+      font-size: 2.5rem;
+    }
+
+    .about-hero-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .intro-text h2,
+    .section-title,
+    .mission-content h2,
+    .cta-content h2 {
+      font-size: 2.2rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .stats-grid,
+    .highlights-grid,
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

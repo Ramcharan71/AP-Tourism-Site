@@ -1,0 +1,56 @@
+{
+  "name": "andhra-pradesh-tourism",
+  "version": "1.0.0",
+  "description": "A modern, responsive tourism website for Andhra Pradesh.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": [
+    "tourism",
+    "Andhra Pradesh",
+    "responsive",
+    "website",
+    "astro",
+    "react"
+  ],
+  "author": "Ramcharan",
+  "license": "MIT",
+  "dependencies": {
+    "@astrojs/react": "^3.6.2",
+    "@astrojs/sitemap": "^3.1.6",
+    "@astrojs/tailwind": "^5.1.1",
+    "@fontsource/inter": "^5.1.0",
+    "@hookform/resolvers": "^3.9.1",
+    "astro": "^4.16.19",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^11.11.17",
+    "fuse.js": "^7.0.0",
+    "lottie-react": "^2.4.0",
+    "lucide-react": "^0.460.0",
+    "mapbox-gl": "^3.8.0",
+    "react": "^18.3.1",
+    "react-day-picker": "^9.4.3",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.2",
+    "sharp": "^0.33.5",
+    "swiper": "^11.1.14",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss": "^3.4.14",
+    "zod": "^3.23.8",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/mapbox-gl": "^3.4.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "typescript": "^5.6.3"
+  }
+}

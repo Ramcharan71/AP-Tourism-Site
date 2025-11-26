@@ -1,0 +1,21 @@
+---
+interface Props {
+  title: string;
+  image: string;
+  description: string;
+  link: string;
+}
+
+const { title, image, description, link } = Astro.props;
+---
+
+<div class="card destination-card">
+  <div class="card-image">
+    <img src={image} alt={title} />
+  </div>
+  <div class="card-content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <a href={link} class="btn-link">Explore More →</a>
+  </div>
+</div>

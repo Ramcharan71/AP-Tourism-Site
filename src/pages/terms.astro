@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Terms of Service - Andhra Pradesh Tourism">
+  <div class="terms-hero">
+    <div class="container">
+      <h1>Terms of Service</h1>
+      <p>Last updated: January 2025</p>
+    </div>
+  </div>
+
+  <section class="terms-content">
+    <div class="container">
+      <div class="terms-wrapper">
+        
+        <div class="terms-section">
+          <h2>1. Acceptance of Terms</h2>
+          <p>By accessing and using the Andhra Pradesh Tourism website, you accept and agree to be bound by these Terms of Service.</p>
+        </div>
+
+        <div class="terms-section">
+          <h2>2. Use of Services</h2>
+          <p>You agree to use our services only for lawful purposes. You must not:</p>
+          <ul>
+            <li>Use the website in any way that violates applicable laws</li>
+            <li>Transmit any harmful or malicious code</li>
+            <li>Interfere with the proper functioning of the website</li>
+          </ul>
+        </div>
+
+        <div class="terms-section">
+          <h2>3. Contact Information</h2>
+          <p>For questions about these Terms:</p>
+          <ul>
+            <li>Email: legal@aptourism.gov.in</li>
+            <li>Phone: 1800-XXX-XXXX</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .terms-hero {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 100px 0 60px;
+    text-align: center;
+  }
+
+  .terms-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #F0DE8C;
+  }
+
+  .terms-content {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .terms-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .terms-section {
+    margin-bottom: 40px;
+  }
+
+  .terms-section h2 {
+    font-size: 1.8rem;
+    color: #1E4D2B;
+    margin-bottom: 20px;
+  }
+
+  .terms-section p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+  }
+
+  .terms-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .terms-section li {
+    padding: 8px 0 8px 30px;
+    position: relative;
+    color: #666;
+  }
+
+  .terms-section li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #B8C77F;
+    font-weight: bold;
+  }
+</style>

@@ -1,0 +1,111 @@
+---
+import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Explore the rich heritage, stunning beaches, ancient temples, and vibrant culture of Andhra Pradesh" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <ViewTransitions />
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="container nav-container">
+        <a href="/" class="logo">
+          <img src="/Logo.jpeg" alt="Andhra Pradesh Tourism" class="logo-image" />
+          <div class="logo-text">
+            <h2>Andhra Pradesh
+            <span class="logo-subtitle">Tourism</span>
+            </h2>
+          </div>
+        </a>
+        
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/destinations" class="nav-link">Destinations</a></li>
+          <li><a href="/experiences" class="nav-link">Experiences</a></li>
+          <li><a href="/culture" class="nav-link">Culture</a></li>
+          <li><a href="/plan-trip" class="nav-link">Plan Trip</a></li>
+          <li><a href="/about" class="nav-link">About</a></li>
+          <li><a href="/contact" class="nav-link-cta">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+    <main>
+      <slot />
+    </main>
+
+    <script>
+      // Navbar scroll effect
+      const navbar = document.getElementById('navbar');
+      let lastScroll = 0;
+      
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
+          navbar?.classList.add('navbar-scrolled');
+        } else {
+          navbar?.classList.remove('navbar-scrolled');
+        }
+        
+        if (currentScroll > lastScroll && currentScroll > 300) {
+          navbar?.classList.add('navbar-hidden');
+        } else {
+          navbar?.classList.remove('navbar-hidden');
+        }
+        
+        lastScroll = currentScroll;
+      });
+
+      // Mobile menu toggle
+      const mobileToggle = document.getElementById('mobile-menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+      
+      mobileToggle?.addEventListener('click', () => {
+        mobileToggle.classList.toggle('active');
+        navLinks?.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+      });
+
+      // Close mobile menu when clicking a link
+      document.querySelectorAll('.nav-link, .nav-link-cta').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileToggle?.classList.remove('active');
+          navLinks?.classList.remove('active');
+          document.body.classList.remove('menu-open');
+        });
+      });
+
+      // Active link highlight
+      const currentPath = window.location.pathname;
+      document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+          link.classList.add('active');
+        }
+      });
+    </script>
+  </body>
+</html>
